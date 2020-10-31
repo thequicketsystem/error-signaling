@@ -25,16 +25,14 @@ def __pulse(color):
 	pixels.fill(OFF)
 	sleep(FLASH_DELAY)
 
-# set solid green
-def setStripGreen():
-	pixels.fill(GREEN)
-
 # pulse red twice before going solid red
-def flashStripRed():
+def errorFlash():
 	__pulse(RED)
 	__pulse(RED)
 	pixels.fill(RED)
 	sleep(LONG_DELAY)
+	pixels.fill(GREEN)
+
 
 # startup
 for i in range(NUM_PIXELS):
