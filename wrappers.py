@@ -7,6 +7,9 @@ NUM_PIXELS = 60
 # delay of 125ms between pulses
 FLASH_DELAY = 125000000
 
+# long delay for error signaling. 5 seconds.
+LONG_DELAY = 5000000000
+
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 OFF = (0, 0, 0)
@@ -30,6 +33,7 @@ def setStatusError():
 	pulse(RED)
 	pulse(RED)
 	pixels.fill(RED)
+	delay_ns(LONG_DELAY)
 
 # startup
 for i in range(NUM_PIXELS):
