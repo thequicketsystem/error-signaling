@@ -6,6 +6,7 @@ class ErrorSignaler():
 	# thread doesn't block
 	def  __init__(self):
 		self.executor = concurrent.futures.ThreadPoolExecutor()
+		wrappers.setGreen()
 
 	def error(self):
 		self.executor.submit(wrappers.errorFlash)

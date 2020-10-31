@@ -2,6 +2,11 @@ import board
 import neopixel
 from time import sleep
 
+DEBUG = True
+
+if DEBUG:
+	from time import time
+
 # our strip has 60 LEDs
 NUM_PIXELS = 60
 
@@ -9,7 +14,7 @@ NUM_PIXELS = 60
 FLASH_DELAY = 125 / 1000
 
 # long delay for error signaling. 5 seconds.
-LONG_DELAY = 5
+LONG_DELAY = 4
 
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
@@ -25,18 +30,22 @@ def __pulse(color):
 	pixels.fill(OFF)
 	sleep(FLASH_DELAY)
 
+def setGreen():
+	pixels.fill(GREEN)
+
 # pulse red twice before going solid red
 def errorFlash():
 	__pulse(RED)
 	__pulse(RED)
+
+	if DEBUG:
+		start = time()
+
 	pixels.fill(RED)
 	sleep(LONG_DELAY)
-	pixels.fill(GREEN)
 
+	if DEBUG:
+		end = time()
+		print(end - start)
 
-# startup
-for i in range(NUM_PIXELS):
-	pixels[i] = GREEN
-	sleep(FLASH_DELAY / 100)
-
-pixels.fill(OFF)
+	setGreen()
